@@ -1,14 +1,17 @@
 package fun.connor.cafe.controllers;
 
 import com.google.inject.Inject;
+import fun.connor.cafe.domain.CafeVisit;
 import fun.connor.cafe.domain.cafe.Cafe;
 import fun.connor.cafe.persistance.CafeRepository;
 import fun.connor.lighter.declarative.Get;
+import fun.connor.lighter.declarative.Post;
 import fun.connor.lighter.declarative.QueryParams;
 import fun.connor.lighter.declarative.ResourceController;
 
 import javax.xml.ws.Response;
 import java.util.List;
+import java.util.UUID;
 
 @ResourceController("/cafe")
 public class CafeController {
@@ -22,5 +25,8 @@ public class CafeController {
         return null;
     }
 
-
+    @Post("/{cafe}/visit")
+    public Response<CafeVisit> visitCafe(UUID visit) {
+        return null;
+    }
 }

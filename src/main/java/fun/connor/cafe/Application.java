@@ -8,6 +8,11 @@ import fun.connor.lighter.autoconfig.AutomaticRouteConfigurationLoader;
 public class Application {
 
     public static void main(String[] args) {
+        Application a = new Application();
+        a.run();
+    }
+
+    public void run() {
         Injector i = Guice.createInjector();
 
 
