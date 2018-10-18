@@ -9,8 +9,13 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'fun.connor', name: 'lighter-core', version: '0.1-SNAPSHOT'
+    compile group: 'fun.connor', name: 'lighter-annotations', version: '0.1 SNAPSHOT'
+    compile group: 'com.google.inject', name: 'guice', version: '4.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
 }
