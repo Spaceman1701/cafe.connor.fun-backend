@@ -8,8 +8,8 @@ import fun.connor.lighter.declarative.Get;
 import fun.connor.lighter.declarative.Post;
 import fun.connor.lighter.declarative.QueryParams;
 import fun.connor.lighter.declarative.ResourceController;
+import fun.connor.lighter.handler.Response;
 
-import javax.xml.ws.Response;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,7 +21,7 @@ public class CafeController {
 
 
     @Get("/nearest") @QueryParams("count")
-    public Response<List<Cafe>> getNearestCafes(int count) {
+    public Response<List<Cafe>> getNearestCafes(Integer count) {
         return null;
     }
 

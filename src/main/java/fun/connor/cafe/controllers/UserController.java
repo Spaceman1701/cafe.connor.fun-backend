@@ -25,8 +25,8 @@ public class UserController {
         return null;
     }
 
-    @Put("/{username}/updateUsername/{username}")
-    public Response<User> updateUsername(String username) {
+    @Put("/{username}/updateUsername/{newUsername}")
+    public Response<User> updateUsername(String username, String newUsername) {
         return null;
     }
 
