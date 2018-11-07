@@ -25,7 +25,7 @@ public class CafeController {
         return null;
     }
 
-    @Post("/{cafe}/visit")
+    @Post("/cafe/{visit}")
     public Response<CafeVisit> visitCafe(UUID visit) {
         return null;
     }

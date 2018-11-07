@@ -4,7 +4,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import fun.connor.cafe.domain.ProductionModule;
 import fun.connor.lighter.Lighter;
-import fun.connor.lighter.autoconfig.AutomaticRouteConfigurationLoader;
+import fun.connor.lighter.autoconfig.AutoConfigFactory;
 import fun.connor.lighter.marshal.DelegatingAdaptorFactory;
 import fun.connor.lighter.marshal.gson.GsonTypeAdapterFactory;
 import fun.connor.lighter.marshal.java.JavaTypesAdaptorFactory;
@@ -28,7 +28,7 @@ public class Application {
         Lighter lighter = LighterUndertow.builder()
                 .adapterFactory(adaptorFactory)
                 .injectionFactory(injector::getInstance)
-                .addRouter(AutomaticRouteConfigurationLoader.loadAutomaticConfiguration())
+                .addRouter(AutoConfigFactory.loadAutomaticConfiguration())
                 .hostName("0.0.0.0")
                 .port(8000)
                 .build();

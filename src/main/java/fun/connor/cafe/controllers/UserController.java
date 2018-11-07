@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @Delete("/{username}")
-    public Response<Void> deleteUser() {
+    public Response<Void> deleteUser(String username) {
         return null;
     }
 }
