@@ -33,7 +33,6 @@ public class Application {
                 .port(8000)
                 .build();
 
-
         lighter.start();
     }
 }

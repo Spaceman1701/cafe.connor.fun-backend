@@ -12,12 +12,19 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
     mavenLocal()
+    jcenter()
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+
     compile group: 'fun.connor', name: 'lighter-core', version: '0.1-SNAPSHOT'
-    compile group: 'fun.connor', name: 'lighter-annotations', version: '0.1 SNAPSHOT'
+    compileOnly group: 'fun.connor', name: 'lighter-compiler', version: '0.1-SNAPSHOT'
+
     compile group: 'com.google.inject', name: 'guice', version: '4.0'
+    compile 'com.google.api-client:google-api-client:1.27.0'
+    compile 'com.auth0:java-jwt:3.4.1'
+    compile 'xyz.morphia.morphia:core:1.4.0'
+    compile 'org.mongodb:mongodb-driver-legacy:3.9.0'
     implementation 'com.google.code.gson:gson:2.8.5'
 }
