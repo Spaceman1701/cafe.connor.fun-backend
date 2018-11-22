@@ -5,7 +5,7 @@ import com.google.inject.Inject;
 import fun.connor.cafe.domain.User;
 import fun.connor.cafe.persistance.UserRepository;
 import fun.connor.lighter.declarative.*;
-import fun.connor.lighter.handler.Response;
+import fun.connor.lighter.response.Response;
 
 @ResourceController("/user")
 public class UserController {

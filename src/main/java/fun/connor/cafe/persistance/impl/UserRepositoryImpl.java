@@ -2,8 +2,19 @@ package fun.connor.cafe.persistance.impl;
 
 import fun.connor.cafe.domain.User;
 import fun.connor.cafe.persistance.UserRepository;
+import xyz.morphia.Datastore;
+
+import javax.inject.Inject;
 
 public class UserRepositoryImpl implements UserRepository {
+
+    private Datastore datastore;
+
+    @Inject
+    public UserRepositoryImpl(Datastore userDatastore) {
+        this.datastore = userDatastore;
+    }
+
     @Override
     public void create(User user) {
 

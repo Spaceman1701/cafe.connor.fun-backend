@@ -8,7 +8,7 @@ import fun.connor.lighter.declarative.Get;
 import fun.connor.lighter.declarative.Post;
 import fun.connor.lighter.declarative.QueryParams;
 import fun.connor.lighter.declarative.ResourceController;
-import fun.connor.lighter.handler.Response;
+import fun.connor.lighter.response.Response;
 
 import java.util.List;
 import java.util.UUID;

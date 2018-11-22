@@ -4,8 +4,20 @@ import fun.connor.lighter.handler.RequestGuard;
 
 import java.util.List;
 
-public interface Subject extends RequestGuard {
-    String getId();
-    List<Role> getRoles();
-    boolean hasRole(Role role);
+public class Subject implements RequestGuard {
+
+    private String id;
+
+    public Subject(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public List<Role> getRoles() {
+        return null;
+    }
+
 }
