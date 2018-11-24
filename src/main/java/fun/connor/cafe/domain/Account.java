@@ -21,9 +21,7 @@ public class Account {
 
     private String subjectId;
 
-    public Account() {
-
-    }
+    public Account() {}
 
     public Account(UUID uuid, List<CafeVisit> cafeVisits, String subjectId) {
         this.uuid = uuid;
