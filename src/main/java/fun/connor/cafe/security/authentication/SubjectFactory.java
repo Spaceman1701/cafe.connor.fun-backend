@@ -1,6 +1,5 @@
 package fun.connor.cafe.security.authentication;
 
-import fun.connor.cafe.security.authentication.Subject;
 import fun.connor.lighter.adapter.TypeAdapterFactory;
 import fun.connor.lighter.declarative.ProducesRequestGuard;
 import fun.connor.lighter.handler.Request;

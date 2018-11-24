@@ -5,13 +5,14 @@ import fun.connor.cafe.persistance.UserRepository;
 import xyz.morphia.Datastore;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 public class UserRepositoryImpl implements UserRepository {
 
     private Datastore datastore;
 
     @Inject
-    public UserRepositoryImpl(Datastore userDatastore) {
+    public UserRepositoryImpl(@Named("userDatastore") Datastore userDatastore) {
         this.datastore = userDatastore;
     }
 

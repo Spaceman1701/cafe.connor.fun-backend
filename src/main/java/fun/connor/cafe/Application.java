@@ -9,8 +9,12 @@ import fun.connor.lighter.marshal.DelegatingAdaptorFactory;
 import fun.connor.lighter.marshal.gson.GsonTypeAdapterFactory;
 import fun.connor.lighter.marshal.java.JavaTypesAdaptorFactory;
 import fun.connor.lighter.undertow.LighterUndertow;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Application {
+
+    private static Logger logger = LoggerFactory.getLogger(Application.class);
 
     public static void main(String[] args) {
         Application a = new Application();
@@ -18,7 +22,9 @@ public class Application {
     }
 
     private void run() {
+        long start = System.currentTimeMillis();
         Injector injector = Guice.createInjector(new ProductionModule());
+        long finishedGuice = System.currentTimeMillis();
 
         DelegatingAdaptorFactory adaptorFactory = DelegatingAdaptorFactory.builder()
                 .addDelegateFactory(new JavaTypesAdaptorFactory())
@@ -34,5 +40,12 @@ public class Application {
                 .build();
 
         lighter.start();
+        long end = System.currentTimeMillis();
+        logStartupStats(start, finishedGuice, end);
+    }
+
+    private void logStartupStats(long start, long guiceTime, long end) {
+        logger.info("Booted Container in a total of {} ms", end - start);
+        logger.info("Of that time, {} ms was used to boot Guice", guiceTime - start);
     }
 }

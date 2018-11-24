@@ -5,6 +5,7 @@ import fun.connor.cafe.security.authorization.Claim;
 import xyz.morphia.Datastore;
 
 import javax.inject.Inject;
+import java.util.Optional;
 
 public class MongoSecurityRepository implements SecurityRepository {
 
@@ -23,12 +24,13 @@ public class MongoSecurityRepository implements SecurityRepository {
     }
 
     @Override
-    public void addClaim(Subject subject, Claim claim) {
+    public void updateSubject(Subject subject) {
 
     }
 
     @Override
-    public Subject getSubjectById(String id) {
-        return null;
+    public Optional<Subject> getSubjectById(String id) {
+        Subject s = datastore.get(Subject.class, id);
+        return Optional.ofNullable(s);
     }
 }

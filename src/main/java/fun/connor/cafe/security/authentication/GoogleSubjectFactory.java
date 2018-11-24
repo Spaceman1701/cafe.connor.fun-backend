@@ -3,9 +3,14 @@ package fun.connor.cafe.security.authentication;
 import fun.connor.cafe.security.SecurityRepository;
 import fun.connor.lighter.adapter.TypeAdapterFactory;
 import fun.connor.lighter.handler.Request;
+import fun.connor.lighter.http.HttpHeaders;
 
 import javax.inject.Inject;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.util.Collections;
 import java.util.Map;
+import java.util.Optional;
 
 public class GoogleSubjectFactory implements SubjectFactory {
 
@@ -22,6 +27,43 @@ public class GoogleSubjectFactory implements SubjectFactory {
     public Subject newInstance
             (Map<String, String> pathParams, Map<String, String> queryParams, Request request,
              TypeAdapterFactory typeAdapterFactory) {
-        return null;
+        String authHeader = request.getHeaderValue(HttpHeaders.AUTHORIZATION);
+        if (authHeader == null) {
+            return new Subject("anon", Collections.singletonList(Role.ANON));
+        }
+        String bearerToken = extractBearer(authHeader);
+        if (bearerToken == null) {
+            return null; //error case
+        }
+
+        String id;
+        try {
+            id = authenticator.doAuthentication(bearerToken).orElse(null );
+        } catch (GeneralSecurityException | IOException e) {
+            return null;
+        }
+        if (id == null) {
+            return null;
+        }
+
+        Optional<Subject> subject = securityRepository.getSubjectById(bearerToken);
+        if (!subject.isPresent()) {
+            Subject newSubject = createNewSubject(id);
+            securityRepository.createNewUser(newSubject);
+            return newSubject;
+        }
+        return subject.get();
+    }
+
+    private Subject createNewSubject(String id) {
+        return new Subject(id, Collections.singletonList(Role.DEFAULT));
+    }
+
+    private String extractBearer(String authHeader) {
+        String[] parts = authHeader.split(":");
+        if (parts.length != 2 || !parts[0].equals("Bearer")) {
+            return null;
+        }
+        return parts[1];
     }
 }
