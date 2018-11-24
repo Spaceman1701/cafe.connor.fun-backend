@@ -5,9 +5,13 @@ import com.google.inject.Injector;
 import fun.connor.cafe.domain.ProductionModule;
 import fun.connor.lighter.Lighter;
 import fun.connor.lighter.autoconfig.AutoConfigFactory;
+import fun.connor.lighter.handler.Request;
+import fun.connor.lighter.http.HttpHeaders;
 import fun.connor.lighter.marshal.DelegatingAdaptorFactory;
 import fun.connor.lighter.marshal.gson.GsonTypeAdapterFactory;
 import fun.connor.lighter.marshal.java.JavaTypesAdaptorFactory;
+import fun.connor.lighter.response.HeaderResponse;
+import fun.connor.lighter.response.Response;
 import fun.connor.lighter.undertow.LighterUndertow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +40,12 @@ public class Application {
                 .injectionFactory(injector::getInstance)
                 .addRouter(AutoConfigFactory.loadAutomaticConfiguration())
                 .hostName("0.0.0.0")
-                .port(8000)
+                .port(8080)
+                .addResponseTransformer((request, response) ->
+                    response
+                            .with(HeaderResponse.from(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*"))
+                            .with(HeaderResponse.from(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, HttpHeaders.AUTHORIZATION))
+                )
                 .build();
 
         lighter.start();

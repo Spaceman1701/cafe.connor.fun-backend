@@ -6,6 +6,7 @@
 
 # fix this to be multiple project level git ignores
 /build/
+*.log
 *.class
 
 # Ignore Gradle GUI config

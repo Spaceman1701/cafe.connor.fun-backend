@@ -1,6 +1,5 @@
 package fun.connor.cafe.security.authentication;
 
-import fun.connor.cafe.security.authorization.Permission;
 import fun.connor.lighter.handler.RequestGuard;
 import xyz.morphia.annotations.Embedded;
 import xyz.morphia.annotations.Entity;
