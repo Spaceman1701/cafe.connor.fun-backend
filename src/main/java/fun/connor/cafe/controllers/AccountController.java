@@ -6,17 +6,15 @@ import fun.connor.cafe.domain.Account;
 import fun.connor.cafe.persistance.AccountRepository;
 import fun.connor.cafe.security.authentication.Role;
 import fun.connor.cafe.security.authentication.Subject;
-import fun.connor.lighter.declarative.*;
-import fun.connor.lighter.http.HttpHeaders;
+import fun.connor.lighter.declarative.Get;
+import fun.connor.lighter.declarative.ResourceController;
 import fun.connor.lighter.http.StatusCodes;
-import fun.connor.lighter.response.HeaderResponse;
 import fun.connor.lighter.response.Response;
 import fun.connor.lighter.response.Responses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Optional;
 import java.util.UUID;
 

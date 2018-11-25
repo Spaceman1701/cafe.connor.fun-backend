@@ -1,7 +1,6 @@
 package fun.connor.cafe.security;
 
 import fun.connor.cafe.security.authentication.Subject;
-import fun.connor.cafe.security.authorization.Claim;
 import xyz.morphia.Datastore;
 
 import javax.inject.Inject;

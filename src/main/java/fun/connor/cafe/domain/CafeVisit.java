@@ -3,8 +3,6 @@ package fun.connor.cafe.domain;
 import fun.connor.cafe.domain.cafe.Cafe;
 import xyz.morphia.annotations.Embedded;
 import xyz.morphia.annotations.Entity;
-import xyz.morphia.annotations.Id;
-import xyz.morphia.annotations.Reference;
 
 import java.util.UUID;
 

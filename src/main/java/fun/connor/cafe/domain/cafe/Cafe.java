@@ -1,13 +1,9 @@
 package fun.connor.cafe.domain.cafe;
 
-import fun.connor.cafe.domain.Account;
-import fun.connor.cafe.domain.CafeVisit;
 import xyz.morphia.annotations.Embedded;
 import xyz.morphia.annotations.Entity;
 import xyz.morphia.annotations.Id;
-import xyz.morphia.annotations.Reference;
 
-import java.util.Map;
 import java.util.UUID;
 
 @Entity

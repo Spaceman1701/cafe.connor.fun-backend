@@ -1,6 +1,5 @@
 package fun.connor.cafe.domain;
 
-import fun.connor.cafe.domain.cafe.Cafe;
 import xyz.morphia.annotations.*;
 
 import java.util.ArrayList;
