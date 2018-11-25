@@ -13,6 +13,7 @@ import xyz.morphia.query.UpdateResults;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Optional;
+import java.util.UUID;
 
 public class AccountRepositoryImpl implements AccountRepository {
 
@@ -40,6 +41,11 @@ public class AccountRepositoryImpl implements AccountRepository {
 
         UpdateResults results = datastore.update(key, update);
         logger.info("updated {} accounts", results.getUpdatedCount());
+    }
+
+    @Override
+    public Optional<Account> get(UUID id) {
+        return Optional.ofNullable(datastore.get(Account.class, id));
     }
 
     @Override

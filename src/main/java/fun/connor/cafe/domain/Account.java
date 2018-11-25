@@ -4,6 +4,7 @@ import xyz.morphia.annotations.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Entity
@@ -45,6 +46,15 @@ public class Account {
 
     public void addCafeVisit(CafeVisit visit) {
         cafeVisits.add(visit);
+    }
+
+    public Optional<CafeVisit> getVisitById(UUID uuid) {
+        for (CafeVisit cafeVisit : cafeVisits) {
+            if (cafeVisit.getUUID().equals(uuid)) {
+                return Optional.of(cafeVisit);
+            }
+        }
+        return Optional.empty();
     }
 
 }
