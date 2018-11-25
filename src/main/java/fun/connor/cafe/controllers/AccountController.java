@@ -36,7 +36,7 @@ public class AccountController {
     public Response<Account> getAccountDetails(Subject subject) {
         logger.info("getting account details: {}", subject.toString());
         if (subject.getRoles().contains(Role.ANON)) {
-            return Responses.<Account>noContent(400);
+            return Responses.noContent(400);
         }
 
         Optional<Account> createdAccount = accountRepository.getBySubjectId(subject.getId());
