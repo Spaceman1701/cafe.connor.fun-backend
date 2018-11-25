@@ -15,6 +15,7 @@ import fun.connor.lighter.response.Responses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.UUID;
@@ -43,7 +44,7 @@ public class AccountController {
             return Responses.json(createdAccount.get());
         }
 
-        Account newAccount = new Account(UUID.randomUUID(), Collections.emptyList(), subject.getId());
+        Account newAccount = new Account(UUID.randomUUID(), new ArrayList<>(), subject.getId());
         accountRepository.create(newAccount);
 
         return Responses.json(newAccount, StatusCodes.CREATED);

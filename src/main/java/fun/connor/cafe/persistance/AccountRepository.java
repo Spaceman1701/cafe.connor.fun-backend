@@ -7,5 +7,6 @@ import java.util.Optional;
 public interface AccountRepository {
 
     void create(Account account);
+    void update(Account account);
     Optional<Account> getBySubjectId(String subjectId);
 }

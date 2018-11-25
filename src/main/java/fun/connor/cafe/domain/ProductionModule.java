@@ -8,6 +8,8 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.mongodb.MongoClient;
+import fun.connor.cafe.domain.score.ScoreCalculator;
+import fun.connor.cafe.domain.score.SimpleScoreCalculator;
 import fun.connor.cafe.persistance.AccountRepository;
 import fun.connor.cafe.persistance.CafeRepository;
 import fun.connor.cafe.persistance.impl.AccountRepositoryImpl;
@@ -32,6 +34,7 @@ public class ProductionModule extends AbstractModule {
         bind(AccountRepository.class).to(AccountRepositoryImpl.class);
         bind(SubjectFactory.class).to(GoogleSubjectFactory.class);
         bind(SecurityRepository.class).to(MongoSecurityRepository.class);
+        bind(ScoreCalculator.class).to(SimpleScoreCalculator.class);
     }
 
     @Provides @Singleton public MongoClient mongoClient() {
@@ -43,7 +46,10 @@ public class ProductionModule extends AbstractModule {
     }
 
     @Provides @Singleton public Morphia morphia() {
-        return new Morphia(); //TODO: configuration
+        Morphia morphia = new Morphia()
+                .mapPackage("fun.connor.cafe");
+        morphia.getMapper().getOptions().setStoreEmpties(true);
+        return morphia; //TODO: configuration
     }
 
     @Provides @Singleton public Datastore securityDatastore(MongoClient client, Morphia morphia) {
