@@ -3,9 +3,9 @@ package fun.connor.cafe.controllers;
 import com.google.inject.Inject;
 import fun.connor.cafe.domain.Account;
 import fun.connor.cafe.domain.CafeVisit;
+import fun.connor.cafe.domain.cafe.Address;
 import fun.connor.cafe.domain.cafe.Cafe;
 import fun.connor.cafe.persistance.AccountRepository;
-import fun.connor.cafe.persistance.CafeRepository;
 import fun.connor.cafe.security.authentication.Subject;
 import fun.connor.lighter.declarative.*;
 import fun.connor.lighter.http.StatusCodes;
@@ -20,12 +20,10 @@ import java.util.UUID;
 @ResourceController("/cafe")
 public class CafeController {
 
-    private CafeRepository cafeRepository;
     private AccountRepository accountRepository;
 
     @Inject
-    public CafeController(CafeRepository cafeRepository, AccountRepository accountRepository) {
-        this.cafeRepository = cafeRepository;
+    public CafeController(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
 
@@ -34,9 +32,9 @@ public class CafeController {
     public Response<List<Cafe>> getNearestCafes(Integer count) {
 
         List<Cafe> cafes = Arrays.asList(
-                new Cafe(UUID.nameUUIDFromBytes("Cafe1".getBytes()), null, "Cafe1"),
-                new Cafe(UUID.nameUUIDFromBytes("Cafe2".getBytes()), null, "Cafe2"),
-                new Cafe(UUID.nameUUIDFromBytes("Cafe3".getBytes()), null, "Cafe3")
+                new Cafe(UUID.nameUUIDFromBytes("Cafe1".getBytes()), new Address("123 AStreet"), "Cafe1"),
+                new Cafe(UUID.nameUUIDFromBytes("Cafe2".getBytes()), new Address("456 AStreet"), "Cafe2"),
+                new Cafe(UUID.nameUUIDFromBytes("Cafe3".getBytes()), new Address("789 AStreet"), "Cafe3")
         );
         return Responses.json(cafes);
     }

@@ -6,7 +6,6 @@ import fun.connor.cafe.domain.CafeVisit;
 import fun.connor.cafe.domain.score.Score;
 import fun.connor.cafe.domain.score.ScoreCalculator;
 import fun.connor.cafe.persistance.AccountRepository;
-import fun.connor.lighter.declarative.Body;
 import fun.connor.lighter.declarative.Get;
 import fun.connor.lighter.declarative.ResourceController;
 import fun.connor.lighter.http.StatusCodes;
@@ -31,7 +30,7 @@ public class ScoreController {
     }
 
 
-    @Get("/single/{accountId}/{visitId}")
+    @Get("/calculateSingleScore/{accountId}/{visitId}")
     public Response<Score> singleCafe(UUID accountId, UUID visitId) {
         Optional<Account> maybeAccount = accountRepository.get(accountId);
         if (!maybeAccount.isPresent()) {
@@ -43,7 +42,7 @@ public class ScoreController {
             return Responses.noContent(StatusCodes.NOT_FOUND);
         }
 
-        Score score = scoreCalculator.single(maybeVisit.get());
+        Score score = scoreCalculator.calculateSingleScore(maybeVisit.get());
         return Responses.json(score);
     }
 

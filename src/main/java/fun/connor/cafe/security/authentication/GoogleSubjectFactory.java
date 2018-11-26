@@ -14,6 +14,10 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * An implementation of {@link SubjectFactory} that uses the Google Client-ID service to
+ * authenticate Subjects using Google Id Tokens. See {@link SubjectFactory}
+ */
 public class GoogleSubjectFactory implements SubjectFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(GoogleSubjectFactory.class);

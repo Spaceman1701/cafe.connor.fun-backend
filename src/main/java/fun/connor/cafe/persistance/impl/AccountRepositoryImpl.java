@@ -15,12 +15,19 @@ import javax.inject.Named;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * MongoDb implementation of {@link AccountRepository}. See {@link Account}
+ */
 public class AccountRepositoryImpl implements AccountRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(AccountRepositoryImpl.class);
 
     private Datastore datastore;
 
+    /**
+     * Create a new repository.
+     * @param datastore Morphia datastore for this repository
+     */
     @Inject
     public AccountRepositoryImpl(@Named("accountDatastore") Datastore datastore) {
         this.datastore = datastore;

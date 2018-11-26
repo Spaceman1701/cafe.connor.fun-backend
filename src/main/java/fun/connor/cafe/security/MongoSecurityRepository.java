@@ -6,6 +6,10 @@ import xyz.morphia.Datastore;
 import javax.inject.Inject;
 import java.util.Optional;
 
+/**
+ * A Mongo-DB implementation of {@link SecurityRepository}. See
+ * {@link} Security repository for method details.
+ */
 public class MongoSecurityRepository implements SecurityRepository {
 
     private Datastore datastore;

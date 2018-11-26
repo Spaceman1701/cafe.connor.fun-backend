@@ -14,6 +14,9 @@ import fun.connor.lighter.undertow.LighterUndertow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * The top-level class representing the application
+ */
 public class Application {
 
     private static Logger logger = LoggerFactory.getLogger(Application.class);
@@ -23,6 +26,11 @@ public class Application {
         a.run();
     }
 
+    /**
+     * Async run method. Creates the application container and starts the application.
+     * This method returns immediately, but starts background threads which will hold the
+     * application open.
+     */
     private void run() {
         long start = System.currentTimeMillis();
         Injector injector = Guice.createInjector(new ProductionModule());
@@ -51,6 +59,12 @@ public class Application {
         logStartupStats(start, finishedGuice, end);
     }
 
+    /**
+     * Logs basic startup-time stats to the debug log
+     * @param start start time in ms
+     * @param guiceTime time when Guice finished initialization
+     * @param end time when the container has finished booting
+     */
     private void logStartupStats(long start, long guiceTime, long end) {
         logger.info("Booted Container in a total of {} ms", end - start);
         logger.info("Of that time, {} ms was used to boot Guice", guiceTime - start);

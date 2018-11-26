@@ -7,6 +7,13 @@ import xyz.morphia.annotations.Id;
 
 import java.util.List;
 
+/**
+ * Authentication Subject. Subject's represent the actors that can take
+ * action within the domain of the service. All authenticated actions that
+ * the service performs are performed <bold>on the behalf of</bold> a subject.
+ *
+ * Examples of subjects include: users, other services, or the service itself
+ */
 @Entity
 public class Subject implements RequestGuard {
 
@@ -16,6 +23,11 @@ public class Subject implements RequestGuard {
     @Embedded
     private List<Role> roles;
 
+    /**
+     * Creates a new subject with a unique ID and a list of {@link Role}s.
+     * @param id a unique String id for this subject.
+     * @param roles the list of roles for this subject
+     */
     public Subject(String id, List<Role> roles) {
         this.id = id;
         this.roles = roles;

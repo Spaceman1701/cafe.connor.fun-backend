@@ -42,7 +42,7 @@ public class AccountController {
             return Responses.json(createdAccount.get());
         }
 
-        Account newAccount = new Account(UUID.randomUUID(), new ArrayList<>(), subject.getId());
+        Account newAccount = new Account(UUID.randomUUID(), subject.getId());
         accountRepository.create(newAccount);
 
         return Responses.json(newAccount, StatusCodes.CREATED);
