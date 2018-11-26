@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Authentication Subject. Subject's represent the actors that can take
  * action within the domain of the service. All authenticated actions that
- * the service performs are performed <bold>on the behalf of</bold> a subject.
+ * the service performs are performed <strong>on the behalf of</strong> a subject.
  *
  * Examples of subjects include: users, other services, or the service itself
  */

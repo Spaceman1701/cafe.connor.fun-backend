@@ -17,17 +17,29 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Lighter resource controller for {@link Cafe} related operations
+ */
 @ResourceController("/cafe")
 public class CafeController {
 
     private AccountRepository accountRepository;
 
+    /**
+     * Construct a new CafeController using the given repository for persistence
+     * @param accountRepository the DAO
+     */
     @Inject
     public CafeController(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
 
 
+    /**
+     * A Lighter endpoint method that returns a list of nearby Cafe's. (Currently hard-coded to return test data).
+     * @param count The maximum number of Cafe's to return
+     * @return A JSON response containing a list of Cafes.
+     */
     @Get("/nearest") @QueryParams("count")
     public Response<List<Cafe>> getNearestCafes(Integer count) {
 
@@ -39,6 +51,13 @@ public class CafeController {
         return Responses.json(cafes);
     }
 
+    /**
+     * A Lighter endpoint method that records a {@link CafeVisit} for the given {@link Cafe}
+     * and {@link Subject}. The visit is created with the current timestamp.
+     * @param cafe the cafe that is being visited
+     * @param subject the subject to perform the visit on the behalf of
+     * @return The created {@link CafeVisit}, if successful
+     */
     @Post("/visit")
     public Response<CafeVisit> visitCafe(@Body Cafe cafe, Subject subject) {
         Optional<Account> maybeAccount = accountRepository.getBySubjectId(subject.getId());
