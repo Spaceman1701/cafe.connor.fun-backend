@@ -1,7 +1,6 @@
-package fun.connor.cafe.persistance.impl;
+package fun.connor.cafe.persistance;
 
 import fun.connor.cafe.domain.Account;
-import fun.connor.cafe.persistance.AccountRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.morphia.Datastore;

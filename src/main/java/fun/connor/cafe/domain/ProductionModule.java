@@ -11,7 +11,7 @@ import com.mongodb.MongoClient;
 import fun.connor.cafe.domain.score.ScoreCalculator;
 import fun.connor.cafe.domain.score.SimpleScoreCalculator;
 import fun.connor.cafe.persistance.AccountRepository;
-import fun.connor.cafe.persistance.impl.AccountRepositoryImpl;
+import fun.connor.cafe.persistance.AccountRepositoryImpl;
 import fun.connor.cafe.security.MongoSecurityRepository;
 import fun.connor.cafe.security.SecurityRepository;
 import fun.connor.cafe.security.authentication.GoogleSubjectFactory;

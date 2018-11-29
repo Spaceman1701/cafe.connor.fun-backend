@@ -6,7 +6,7 @@ import fun.connor.cafe.domain.ProductionModule;
 import fun.connor.lighter.Lighter;
 import fun.connor.lighter.autoconfig.AutoConfigFactory;
 import fun.connor.lighter.http.HttpHeaders;
-import fun.connor.lighter.marshal.DelegatingAdaptorFactory;
+import fun.connor.lighter.adapter.DelegatingAdaptorFactory;
 import fun.connor.lighter.marshal.gson.GsonTypeAdapterFactory;
 import fun.connor.lighter.marshal.java.JavaTypesAdaptorFactory;
 import fun.connor.lighter.response.HeaderResponse;
