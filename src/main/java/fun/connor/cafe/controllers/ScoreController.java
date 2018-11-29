@@ -3,10 +3,15 @@ package fun.connor.cafe.controllers;
 import com.google.inject.Inject;
 import fun.connor.cafe.domain.Account;
 import fun.connor.cafe.domain.CafeVisit;
+import fun.connor.cafe.domain.cafe.Cafe;
 import fun.connor.cafe.domain.score.Score;
 import fun.connor.cafe.domain.score.ScoreCalculator;
 import fun.connor.cafe.persistance.AccountRepository;
+import fun.connor.cafe.security.authentication.Role;
+import fun.connor.cafe.security.authentication.Subject;
+import fun.connor.lighter.declarative.Body;
 import fun.connor.lighter.declarative.Get;
+import fun.connor.lighter.declarative.Post;
 import fun.connor.lighter.declarative.ResourceController;
 import fun.connor.lighter.http.StatusCodes;
 import fun.connor.lighter.response.Response;
@@ -75,6 +80,19 @@ public class ScoreController {
             return Responses.noContent(StatusCodes.NOT_FOUND);
         }
         Score score = scoreCalculator.calculateScore(maybeAccount.get().getCafeVisits());
+        return Responses.json(score);
+    }
+
+    /**
+     * Lighter endpoint method for calculating the potential score earned by visiting a Cafe.
+     * @param cafe the cafe being visited
+     * @param accountId the account that is visiting
+     * @return a json encoded {@link Score}
+     */
+    @Post("/potential/{accountId}")
+    public Response<Score> getPotentialScore(@Body Cafe cafe, UUID accountId) {
+        CafeVisit visit = new CafeVisit(null, System.currentTimeMillis() / 1000L, cafe, accountId);
+        Score score  = scoreCalculator.calculateSingleScore(visit);
         return Responses.json(score);
     }
 }
